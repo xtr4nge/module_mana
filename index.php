@@ -44,8 +44,8 @@ $(function() {
 
 <?
 
-include "_info_.php";
 include "../../config/config.php";
+include "_info_.php";
 include "../../functions.php";
 
 // Checking POST & GET variables...

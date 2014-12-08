@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014  xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,9 +18,9 @@
 ?>
 <?
 //include "../login_check.php";
+include "../../../config/config.php";
 include "../_info_.php";
-include "/usr/share/FruityWifi/www/config/config.php";
-include "/usr/share/FruityWifi/www/functions.php";
+include "../../../functions.php";
 
 // Checking POST & GET variables...
 if ($regex == 1) {
@@ -75,7 +75,7 @@ if ($install == "install_$mod_name") {
     $exec = "chmod 755 install.sh";
     exec("$bin_danger \"$exec\"" );
 
-    $exec = "$bin_sudo ./install.sh > /usr/share/FruityWifi/logs/install.txt &";
+    $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
     exec("$bin_danger \"$exec\"" );
 
     header('Location: ../../install.php?module='.$mod_name);
