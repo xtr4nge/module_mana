@@ -17,7 +17,7 @@
 */ 
 ?>
 <?
-//include "../login_check.php";
+include "../../../login_check.php";
 include "../../../config/config.php";
 include "../_info_.php";
 include "../../../functions.php";
@@ -44,26 +44,31 @@ if($service != "") {
             exec("$bin_danger \"$exec\"" );
             
             $exec = "$bin_echo '' > $mod_logs";
-            exec("$bin_danger \"$exec\"" );
+            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
+            exec_fruitywifi($exec);
         }
 
         //$exec = "./hostapd_cli -p /var/run/hostapd karma_enable";
         $exec = "./hostapd_cli karma_enable";
-        exec("$bin_danger \"" . $exec . "\"" );
+        //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+        exec_fruitywifi($exec);
         
     } else if($action == "stop") {
         // STOP MODULE
         //$exec = "./hostapd_cli -p /var/run/hostapd karma_disable";
         $exec = "./hostapd_cli karma_disable";
-        exec("$bin_danger \"" . $exec . "\"" );
+        //exec("$bin_danger \"" . $exec . "\"" ); //DEPRECATED
+        exec_fruitywifi($exec);
         
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-            exec("$bin_danger \"$exec\"" );
+            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
+            exec_fruitywifi($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
-            exec("$bin_danger \"$exec\"" );
+            //exec("$bin_danger \"$exec\"" ); //DEPRECATED
+            exec_fruitywifi($exec);
         }
 
     }
@@ -73,10 +78,12 @@ if($service != "") {
 if ($install == "install_$mod_name") {
 
     $exec = "chmod 755 install.sh";
-    exec("$bin_danger \"$exec\"" );
+    //exec("$bin_danger \"$exec\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 
     $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
-    exec("$bin_danger \"$exec\"" );
+    //exec("$bin_danger \"$exec\"" ); //DEPRECATED
+    exec_fruitywifi($exec);
 
     header('Location: ../../install.php?module='.$mod_name);
     exit;
