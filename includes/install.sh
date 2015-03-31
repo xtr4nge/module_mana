@@ -14,15 +14,10 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 40 --slave /usr/
 
 echo "installing Hostapd/Mana..."
 # INSTALL HOSTAPD-MANA
-wget https://github.com/sensepost/mana/archive/master.zip -O hostapd-mana.zip
+apt-get install -y mana-toolkit
 
-unzip hostapd-mana.zip
-
-cd mana-master
-make
-
-cp hostapd-manna/hostapd/hostapd ../
-cp hostapd-manna/hostapd/hostapd_cli ../
+cp /usr/lib/mana-toolkit/hostapd ./
+cp /usr/lib/mana-toolkit/hostapd_cli ./
 
 echo "..DONE.."
 exit
