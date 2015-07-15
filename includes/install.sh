@@ -18,6 +18,21 @@ wget https://github.com/xtr4nge/hostapd-mana/archive/master.zip -O hostapd-mana.
 
 unzip hostapd-mana.zip
 
+cmd=`lsb_release -c |grep "jessie"`
+if [[ ! -z $cmd ]]
+then
+    echo "--------------------------------"
+    echo "ADDING: CONFIG_LIBNL32=y (Debian Jessie patch)"
+    echo "--------------------------------"
+	
+    EXEC="s,^#CONFIG_LIBNL32=y,CONFIG_LIBNL32=y,g"
+    sed -i $EXEC hostapd-mana-master/hostapd/.config
+    
+    echo "[setup completed]"
+    echo
+
+fi
+
 cd hostapd-mana-master/hostapd
 make
 
