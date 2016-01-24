@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2014 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ $service = $_POST["service"];
 // DELETE LOG
 if ($logfile != "" and $action == "delete") {
     $exec = "$bin_rm ".$mod_logs_history.$logfile.".log";
-    exec("$bin_danger \"$exec\"", $dump);
+    exec_fruitywifi($exec);
 }
 
 ?>
@@ -107,6 +107,7 @@ Loading, please wait...
         <ul>
             <li><a href="#result-1">Output</a></li>
             <li><a href="#result-2">History</a></li>
+            <li><a href="#result-3">About</a></li>
         </ul>
         
         <!-- OUTPUT -->
@@ -155,6 +156,16 @@ Loading, please wait...
             ?>
             
         </div>
+        
+        <!-- END HISTORY -->
+        
+        <!-- ABOUT -->
+
+        <div id="result-3" class="history">
+            <? include "includes/about.php"; ?>
+        </div>
+
+        <!-- END ABOUT -->
         
     </div>
 

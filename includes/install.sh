@@ -29,6 +29,9 @@ then
     
     EXEC="s,^#CONFIG_LIBNL32=y,CONFIG_LIBNL32=y,g"
     sed -i $EXEC hostapd-mana-master/hostapd/.config
+	
+	EXEC="s,^#CONFIG_DEBUG_FILE=y,CONFIG_DEBUG_FILE=y,g"
+    sed -i $EXEC hostapd-mana-master/hostapd/.config
     
     echo "[setup completed]"
     echo
