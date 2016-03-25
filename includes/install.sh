@@ -18,7 +18,7 @@ wget https://github.com/xtr4nge/hostapd-mana/archive/master.zip -O hostapd-mana.
 
 unzip hostapd-mana.zip
 
-cmd=`lsb_release -c |grep "jessie"`
+cmd=`lsb_release -c |grep -iEe "jessie|kali|sana"`
 if [[ ! -z $cmd ]]
 then
     echo "--------------------------------"
