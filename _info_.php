@@ -26,5 +26,5 @@ $bin_perl = "/usr/bin/perl";
 
 # ISUP
 //$mod_isup="$bin_danger \"/usr/share/fruitywifi/www/modules/$mod_name/includes/hostapd_cli -p /var/run/hostapd karma_get_state | tail -1 | grep 'KARMA EN'\"";
-$mod_isup="$bin_sudo /usr/share/fruitywifi/www/modules/$mod_name/includes/hostapd_cli -p /var/run/hostapd karma_get_state | tail -1 | grep 'KARMA EN'";
+$mod_isup="$bin_sudo /usr/share/fruitywifi/www/modules/$mod_name/includes/hostapd_cli -p /var/run/hostapd mana_get_state | tail -1 | grep 'MANA EN'";
 ?>

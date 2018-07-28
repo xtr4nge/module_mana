@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2018 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,12 +47,12 @@ if($service != "") {
             exec_fruitywifi($exec);
         }
 
-        $exec = "./hostapd_cli -p /var/run/hostapd karma_enable";
+        $exec = "./hostapd_cli -p /var/run/hostapd mana_enable";
         exec_fruitywifi($exec);
         
     } else if($action == "stop") {
         // STOP MODULE
-        $exec = "./hostapd_cli -p /var/run/hostapd karma_disable";
+        $exec = "./hostapd_cli -p /var/run/hostapd mana_disable";
         exec_fruitywifi($exec);
         
         // COPY LOG
