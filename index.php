@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2016 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2020 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>FruityWifi</title>
+<title>FruityWifi : Mana</title>
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/jquery-ui.css" />
@@ -32,14 +32,11 @@ $(function() {
     $( "#action" ).tabs();
     $( "#result" ).tabs();
 });
-
 </script>
 
 </head>
 <body>
-
 <? include "../menu.php"; ?>
-
 <br>
 
 <?
@@ -75,19 +72,36 @@ if ($logfile != "" and $action == "delete") {
 
     &nbsp;version <?=$mod_version?><br>
     <? 
-    if (file_exists("includes/hostapd_cli")) { 
-        echo "&nbsp;&nbsp;&nbsp; $mod_alias <font style='color:lime'>installed</font><br>";
+    if (file_exists($bin_hostapd_cli)) { 
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias <font style='color:lime'>installed</font><br>";
     } else {
-        echo "&nbsp;&nbsp;&nbsp; $mod_alias <a href='includes/module_action.php?install=install_$mod_name' style='color:red'>install</a><br>";
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias <a href='includes/module_action.php?install=install_$mod_name' style='color:red'>install</a><br>";
     } 
     ?>
-    
+
+    <? 
+    if (file_exists($bin_responder)) { 
+        echo "&nbsp; $mod_dep <font style='color:lime'>installed</font><br>";
+    } else {
+        echo "&nbsp; $mod_dep <a href='../../page_modules.php?show' style='color:red'>Get Responder Module</a><br>";
+    } 
+    ?>
+
     <?
-    $ismoduleup = exec("$mod_isup");
+    $ismoduleup = exec($mod_isup);
     if ($ismoduleup != "") {
-        echo "&nbsp;&nbsp;&nbsp; $mod_alias  <font color=\"lime\"><b>enabled</b></font>.&nbsp; | <a href=\"includes/module_action.php?service=responder&action=stop&page=module\"><b>stop</b></a>";
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='includes/module_action.php?action=stop&page=module'><b>stop</b></a><br>";
     } else { 
-        echo "&nbsp;&nbsp;&nbsp; $mod_alias  <font color=\"red\"><b>disabled</b></font>. | <a href=\"includes/module_action.php?service=responder&action=start&page=module\"><b>start</b></a>"; 
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias  <font color='red'><b>disabled</b></font>. | <a href='includes/module_action.php?action=start&page=module'><b>start</b></a><br>"; 
+    }
+    ?>
+
+    <?
+    $ismoduleup = exec($mod_responderisup);
+    if ($ismoduleup != "") {
+        echo "&nbsp; $mod_dep  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='includes/module_action.php?service=responder&action=stop&page=module'><b>stop</b></a><br>";
+    } else { 
+        echo "&nbsp; $mod_dep  <font color='red'><b>disabled</b></font>. | <a href='includes/module_action.php?service=responder&action=start&page=module'><b>start</b></a><br>"; 
     }
     ?>
 
@@ -124,11 +138,7 @@ Loading, please wait...
                 }
             
                 $data = open_file($filename);
-                
-                // REVERSE
-                //$data_array = explode("\n", $data);
-                //$data = implode("\n",array_reverse($data_array));
-                
+                                
             ?>
             <textarea id="output" class="module-content" style="font-family: courier;"><?=htmlspecialchars($data)?></textarea>
             <input type="hidden" name="type" value="logs">
