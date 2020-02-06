@@ -36,12 +36,11 @@ $page = $_GET['page'];
 $install = $_GET['install'];
 
 if($service != "") {
-    
     if ($action == "start") {
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-            exec("$bin_sudo \"$exec\"" );
+            exec_fruitywifi($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
             exec_fruitywifi($exec);
