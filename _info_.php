@@ -26,5 +26,4 @@ $bin_chmod = "/bin/chmod";
 $bin_sed = "/bin/sed";
 $bin_rm = "/bin/rm";
 $bin_route = "/sbin/route";
-$bin_perl = "/usr/bin/perl";
 ?>
