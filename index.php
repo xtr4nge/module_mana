@@ -79,30 +79,27 @@ if ($logfile != "" and $action == "delete") {
     } 
     ?>
 
-    <? 
-    if (file_exists($bin_responder)) { 
-        echo "&nbsp; $mod_dep <font style='color:lime'>installed</font><br>";
-    } else {
-        echo "&nbsp; $mod_dep <a href='../../page_modules.php?show' style='color:red'>Get Responder Module</a><br>";
-    } 
-    ?>
-
     <?
     $ismoduleup = exec($mod_isup);
     if ($ismoduleup != "") {
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='includes/module_action.php?action=stop&page=module'><b>stop</b></a><br>";
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='includes/module_action.php?service=mana&action=stop&page=module'><b>stop</b></a><br>";
     } else { 
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias  <font color='red'><b>disabled</b></font>. | <a href='includes/module_action.php?action=start&page=module'><b>start</b></a><br>"; 
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $mod_alias  <font color='red'><b>disabled</b></font>. | <a href='includes/module_action.php?service=mana&action=start&page=module'><b>start</b></a><br>"; 
     }
     ?>
 
-    <?
-    $ismoduleup = exec($mod_responderisup);
-    if ($ismoduleup != "") {
-        echo "&nbsp; $mod_dep  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='includes/module_action.php?service=responder&action=stop&page=module'><b>stop</b></a><br>";
-    } else { 
-        echo "&nbsp; $mod_dep  <font color='red'><b>disabled</b></font>. | <a href='includes/module_action.php?service=responder&action=start&page=module'><b>start</b></a><br>"; 
-    }
+     <? 
+    if (file_exists($bin_responder)) { 
+       echo "&nbsp; $mod_dep <font style='color:lime'>installed</font><br>";
+        $ismoduleup = exec($mod_responderisup);
+    	if ($ismoduleup != "") {
+        echo "&nbsp; $mod_dep  <font color='lime'><b>enabled</b></font>.&nbsp; | <a href='../../modules/responder/'><b>stop</b></a><br>";
+    	} else { 
+        echo "&nbsp; $mod_dep  <font color='red'><b>disabled</b></font>. | <a href='../../modules/responder/'><b>start</b></a><br>"; 
+    	}
+    } else {
+        echo "&nbsp; $mod_dep <a href='../../page_modules.php?show' style='color:red'>Get Responder Module</a><br>";
+    } 
     ?>
 
 </div>
