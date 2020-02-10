@@ -1,6 +1,6 @@
 <? 
 /*
-    Copyright (C) 2013-2018 xtr4nge [_AT_] gmail.com
+    Copyright (C) 2013-2020 xtr4nge [_AT_] gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,23 +36,22 @@ $page = $_GET['page'];
 $install = $_GET['install'];
 
 if($service != "") {
-    
     if ($action == "start") {
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-            exec("$bin_danger \"$exec\"" );
+            exec_fruitywifi($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
             exec_fruitywifi($exec);
         }
 
-        $exec = "./hostapd_cli -p /var/run/hostapd mana_enable";
+        $exec = "./hostapd_cli -p /var/run/hostapd mana_enable > $mod_logs";
         exec_fruitywifi($exec);
         
     } else if($action == "stop") {
         // STOP MODULE
-        $exec = "./hostapd_cli -p /var/run/hostapd mana_disable";
+        $exec = "./hostapd_cli -p /var/run/hostapd mana_disable > $mod_logs";
         exec_fruitywifi($exec);
         
         // COPY LOG
